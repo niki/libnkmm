@@ -1,0 +1,140 @@
+#
+# Inprise C++Builder - (C) Copyright 1999 by Borland International
+#
+
+.autodepend
+
+
+CC		=bcc32
+RC		=brcc32
+AS		=tasm32
+AR		=tlib
+
+
+# Object directory
+!if $d(DEBUG)
+OBJDIR	=.\obj\Debug
+ASMDIR	=.\asm\Debug
+!else
+OBJDIR	=.\obj\Release
+ASMDIR	=.\asm\Release
+#OBJDIR	=.
+!endif
+
+
+#LIBDIR	= -mkdir "$(OBJDIR)"
+
+
+SRCDIR	=.
+#OUTDIR	=$(OBJDIR)
+#OUTASMDIR	=$(ASMDIR)
+
+!if $d(__NMAKE__)
+CXX      =bcc32 -P
+CPP      =bcc32 -P
+!endif
+
+
+# Optimize flags
+!if !$d(OPTFLAGS)
+!if $d(DEBUG)
+OPTFLAGS	=	-Od	#debug
+!else
+OPTFLAGS	=	-O2
+!endif
+!endif
+
+
+.SUFFIXES: .lib .exe .obj .asm .cpp .c .res .rc
+
+
+#==============================================================================
+# 
+#"$(OBJDIR)":
+#		if not exist "$(OBJDIR)/" mkdir "$(OBJDIR)"
+
+#.asm.obj:
+{$(SRCDIR)}.asm{$(OBJDIR)}.obj:
+		@if not exist "$(OBJDIR)/" mkdir "$(OBJDIR)"
+		$(AS) $(AFLAGS) $(OBJDIR)/$(@F)
+#		$(AS) $(AFLAGS) $&.asm
+
+#.c.exe:
+#		$(CC) $(CFLAGS) $&.c
+
+#.c.obj:
+{$(SRCDIR)}.c{$(OBJDIR)}.obj:
+		@if not exist "$(OBJDIR)/" mkdir "$(OBJDIR)"
+		@if not exist "$(ASMDIR)/" mkdir "$(ASMDIR)"
+		$(CC) $(CFLAGS) -o$(OBJDIR)/$(@F) -c $<
+		$(CC) $(CFLAGS) -S -o$(ASMDIR)/$&.asm -c $<
+
+#.cpp.exe:
+#		$(CC) $(CFLAGS) $&.cpp
+
+#.cpp.obj:
+{$(SRCDIR)}.cpp{$(OBJDIR)}.obj:
+		@if not exist "$(OBJDIR)/" mkdir "$(OBJDIR)"
+		@if not exist "$(ASMDIR)/" mkdir "$(ASMDIR)"
+		$(CC) $(CPPFLAGS) -o$(OBJDIR)/$(@F) -c $<
+		$(CC) $(CPPFLAGS) -S -o$(ASMDIR)/$&.asm -c $<
+
+.rc.res:
+		$(RC) $(RFLAGS) /r $&
+
+#==============================================================================
+# コンパイル条件
+FLAGS1		=	-DWIN32 -DWIN32_LEAN_AND_MEAN -DBCC32 -D$(DEFINE)
+
+#==============================================================================
+# コンパイラオプション
+WARNING		=	-w-8004 -w-8027 -w-8071		# 無効にする Warning
+
+!if $d(DEBUG)
+#CFLAGS		=	-5 -w- -d $(OPTFLAGS) $(FLAGS1) $(INCLUDE)
+#CFLAGS		=	-5 -Od -w $(OPTFLAGS) $(WARNING) $(FLAGS1) $(INCLUDE)
+CFLAGS		=	-5 -w $(OPTFLAGS) $(WARNING) $(FLAGS1) $(INCLUDE)
+!else
+#CFLAGS		=	-5 -O1 -w $(OPTFLAGS) $(WARNING) -d $(FLAGS1) -I$(INCLUDE)
+#CFLAGS		=	-5 -O2 -w $(OPTFLAGS) $(WARNING) -d $(FLAGS1) -I$(INCLUDE)
+CFLAGS		=	-5 -w $(OPTFLAGS) $(WARNING) -d $(FLAGS1) -I$(INCLUDE)
+!endif
+
+CPPFLAGS	=	$(CFLAGS)
+
+#==============================================================================
+# ファイル名解決
+#TEST_OBJS	=	$(CPPSRCS:.cpp=.obj) $(CSRCS:.c=.obj)
+
+#==============================================================================
+# 実行ファイル生成(.exe)
+$(TARGET).exe: $(OBJS) $(LIBS)
+#	@cd $(OBJDIR)
+	$(CC) $(CFLAG) -M -e$(OBJDIR)\$(TARGET).exe $(OBJS) $(LIBS)
+	@move /y $(OBJDIR)\$(TARGET).exe .\\
+
+#==============================================================================
+# DLLファイル生成(.dll)
+dll: $(OBJS) $(LIBS)
+	$(CC) $(CFLAG) -WD -e$(TARGET).dll $(OBJS) $(LIBS)
+
+#==============================================================================
+# ライブラリ生成(.lib)
+lib: $(OBJS) $(LIBS)
+#	@cd $(OBJDIR)
+	$(AR) $(OBJDIR)\$(TARGET).lib /u /0 $(OBJS)			# .lib(ｺﾒﾝﾄﾚｺｰﾄﾞ削除)
+	@del $(OBJDIR)\$(TARGET).BAK
+	@move /y $(OBJDIR)\$(TARGET).lib .\\
+
+#==============================================================================
+# All
+all: clean $(TARGET)
+
+#==============================================================================
+# Clean
+clean:
+#	@cd $(OBJDIR)
+#	-del *.a86 *.map *.obj *.tds *.lib
+	-del $(OBJS) $(OBJDIR)\$(TARGET).map $(OBJDIR)\$(TARGET).tds #$(TARGET).lib
+	-rmdir $(OBJDIR)
+
