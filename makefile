@@ -2,7 +2,7 @@
 
 
 # 生成ファイル(拡張子は含めない)
-TARGET	=	ul
+TARGET	=	rei
 
 
 # リンクライブラリ
@@ -14,23 +14,23 @@ INCLUDE		= include
 
 
 # リンクオブジェクト
-OBJS	=	$(OBJDIR)\ul_basic.obj \
-			$(OBJDIR)\ul_base64.obj \
-			$(OBJDIR)\ul_buffer.obj \
-			$(OBJDIR)\ul_calc.obj \
-			$(OBJDIR)\ul_eval.obj \
-			$(OBJDIR)\ul_file.obj \
-			$(OBJDIR)\ul_ini.obj \
-			$(OBJDIR)\ul_math.obj \
-			$(OBJDIR)\ul_memory.obj \
-			$(OBJDIR)\ul_scramble.obj \
-			$(OBJDIR)\ul_sort.obj \
-			$(OBJDIR)\ul_strlib.obj \
-			$(OBJDIR)\ul_strlib_sjis.obj \
-			$(OBJDIR)\ul_strlib_unicode.obj \
-			$(OBJDIR)\ul_stringlist.obj \
-			$(OBJDIR)\ul_utils.obj \
-			$(OBJDIR)\ul_w32.obj \
+OBJS	=	$(OBJDIR)\rei_basic.obj \
+			$(OBJDIR)\rei_base64.obj \
+			$(OBJDIR)\rei_buffer.obj \
+			$(OBJDIR)\rei_calc.obj \
+			$(OBJDIR)\rei_eval.obj \
+			$(OBJDIR)\rei_file.obj \
+			$(OBJDIR)\rei_ini.obj \
+			$(OBJDIR)\rei_math.obj \
+			$(OBJDIR)\rei_memory.obj \
+			$(OBJDIR)\rei_scramble.obj \
+			$(OBJDIR)\rei_sort.obj \
+			$(OBJDIR)\rei_strlib.obj \
+			$(OBJDIR)\rei_strlib_sjis.obj \
+			$(OBJDIR)\rei_strlib_unicode.obj \
+			$(OBJDIR)\rei_stringlist.obj \
+			$(OBJDIR)\rei_utils.obj \
+			$(OBJDIR)\rei_w32.obj \
 
 
 # フラグ

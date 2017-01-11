@@ -2,7 +2,6 @@
 #ifndef SPECIAL_PATH_NAME_H
 #define SPECIAL_PATH_NAME_H
 
-
 /*
 http://technet.microsoft.com/ja-jp/library/cc749104%28v=ws.10%29.aspx
 
@@ -107,37 +106,37 @@ USERPROFILE						CSIDL_PROFILE と同じです。
 USERSID							現在のユーザー アカウント セキュリティ識別子 (SID) を示します。たとえば、S-1-5-21-1714567821-1326601894-715345443-1026 など。
 */
 
-
-static const struct
-{
-	char	*Name;
-	int		Id;
+static const struct {
+  char *Name;
+  int Id;
 } s_folderId[] = {
-	{ "%Desktop%",						CSIDL_DESKTOP					},	//デスクトップ
-	{ "%Program%",						CSIDL_PROGRAMS					},	//スタートメニュー\プログラム
-	{ "%ControlPanel%",					CSIDL_CONTROLS					},	//コントロール パネル
-	{ "%MyDocment%",					CSIDL_PERSONAL					},	//マイドキュメント
-	{ "%Favorite%",						CSIDL_FAVORITES					},	//お気に入り
-	{ "%Startup%",						CSIDL_STARTUP					},	//スタートアップ
-	{ "%Recent%",						CSIDL_RECENT					},	//最近使ったファイル
-	{ "%SendTo%",						CSIDL_SENDTO					},	//送る
-	{ "%BitBucket%",					CSIDL_BITBUCKET					},	//ごみ箱
-	{ "%StartMenu%",					CSIDL_STARTMENU					},	//スタートメニュー
-	{ "%MyComputer%",					CSIDL_DRIVES					},	//マイ コンピュータ
-	{ "%MyNetwork%",					CSIDL_NETWORK					},	//マイネットワーク
-	{ "%Network%",						CSIDL_NETHOOD					},	//ネットワーク
-	{ "%Font%",							CSIDL_FONTS						},	//フォント
-	{ "%ApplicationData%",				CSIDL_APPDATA					},	//アプリケーションデータ
-	{ "%LocalApplicationData%",			CSIDL_LOCAL_APPDATA				},	//ローカルアプリケーションデータ
-	{ "%Windows%",						CSIDL_WINDOWS					},	//Windowsディレクトリ
-	{ "%System%",						CSIDL_SYSTEM					},	//Systemディレクトリ
-	{ "%ProgramFiles%",					CSIDL_PROGRAM_FILES				},	//C:\Program Files
-	{ "%MyPicture%",					CSIDL_MYPICTURES				},	//マイピクチャ
+    {"%Desktop%", CSIDL_DESKTOP},                     //デスクトップ
+    {"%Program%", CSIDL_PROGRAMS},                    //スタートメニュー\プログラム
+    {"%ControlPanel%", CSIDL_CONTROLS},               //コントロール パネル
+    {"%MyDocment%", CSIDL_PERSONAL},                  //マイドキュメント
+    {"%Favorite%", CSIDL_FAVORITES},                  //お気に入り
+    {"%Startup%", CSIDL_STARTUP},                     //スタートアップ
+    {"%Recent%", CSIDL_RECENT},                       //最近使ったファイル
+    {"%SendTo%", CSIDL_SENDTO},                       //送る
+    {"%BitBucket%", CSIDL_BITBUCKET},                 //ごみ箱
+    {"%StartMenu%", CSIDL_STARTMENU},                 //スタートメニュー
+    {"%MyComputer%", CSIDL_DRIVES},                   //マイ コンピュータ
+    {"%MyNetwork%", CSIDL_NETWORK},                   //マイネットワーク
+    {"%Network%", CSIDL_NETHOOD},                     //ネットワーク
+    {"%Font%", CSIDL_FONTS},                          //フォント
+    {"%ApplicationData%", CSIDL_APPDATA},             //アプリケーションデータ
+    {"%LocalApplicationData%", CSIDL_LOCAL_APPDATA},  //ローカルアプリケーションデータ
+    {"%Windows%", CSIDL_WINDOWS},                     //Windowsディレクトリ
+    {"%System%", CSIDL_SYSTEM},                       //Systemディレクトリ
+    {"%ProgramFiles%", CSIDL_PROGRAM_FILES},          //C:\Program Files
+    {"%MyPicture%", CSIDL_MYPICTURES},                //マイピクチャ
 
-	{ "%AllUsers StartMenu%",			CSIDL_COMMON_STARTMENU			},	//C:\WINDOWS\All Users\スタート メニュー
-	{ "%AllUsers Program%",				CSIDL_COMMON_PROGRAMS			},	//C:\WINDOWS\All Users\スタート メニュー\プログラム
-	{ "%AllUsers Startup%",				CSIDL_COMMON_STARTUP			},	//C:\WINDOWS\All Users\スタート メニュー\プログラム\スタートアップ
-	{ "%AllUsers Favorite%",			CSIDL_COMMON_FAVORITES			},	//C:\WINDOWS\All Users\Favorites
+    {"%AllUsers StartMenu%", CSIDL_COMMON_STARTMENU},  //C:\WINDOWS\All Users\スタート メニュー
+    {"%AllUsers Program%",
+     CSIDL_COMMON_PROGRAMS},  //C:\WINDOWS\All Users\スタート メニュー\プログラム
+    {"%AllUsers Startup%",
+     CSIDL_COMMON_STARTUP},  //C:\WINDOWS\All Users\スタート メニュー\プログラム\スタートアップ
+    {"%AllUsers Favorite%", CSIDL_COMMON_FAVORITES},  //C:\WINDOWS\All Users\Favorites
 };
 
 static const int s_folderMax = sizeof(s_folderId) / sizeof(s_folderId[0]);
@@ -154,4 +153,4 @@ inline static int getSpecialFolderID(const char *name)
 }
 #endif
 
-#endif //SPECIAL_PATH_NAME_H
+#endif  //SPECIAL_PATH_NAME_H
