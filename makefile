@@ -2,7 +2,7 @@
 
 
 # 生成ファイル(拡張子は含めない)
-TARGET	=	rei
+TARGET	=	nkmm
 
 
 # リンクライブラリ
@@ -14,23 +14,23 @@ INCLUDE		= include
 
 
 # リンクオブジェクト
-OBJS	=	$(OBJDIR)\rei_basic.obj \
-			$(OBJDIR)\rei_base64.obj \
-			$(OBJDIR)\rei_buffer.obj \
-			$(OBJDIR)\rei_calc.obj \
-			$(OBJDIR)\rei_eval.obj \
-			$(OBJDIR)\rei_file.obj \
-			$(OBJDIR)\rei_ini.obj \
-			$(OBJDIR)\rei_math.obj \
-			$(OBJDIR)\rei_memory.obj \
-			$(OBJDIR)\rei_scramble.obj \
-			$(OBJDIR)\rei_sort.obj \
-			$(OBJDIR)\rei_strlib.obj \
-			$(OBJDIR)\rei_strlib_sjis.obj \
-			$(OBJDIR)\rei_strlib_unicode.obj \
-			$(OBJDIR)\rei_stringlist.obj \
-			$(OBJDIR)\rei_utils.obj \
-			$(OBJDIR)\rei_w32.obj \
+OBJS	=	$(OBJDIR)\nkmm_basic.obj \
+			$(OBJDIR)\nkmm_base64.obj \
+			$(OBJDIR)\nkmm_buffer.obj \
+			$(OBJDIR)\nkmm_calc.obj \
+			$(OBJDIR)\nkmm_eval.obj \
+			$(OBJDIR)\nkmm_file.obj \
+			$(OBJDIR)\nkmm_ini.obj \
+			$(OBJDIR)\nkmm_math.obj \
+			$(OBJDIR)\nkmm_memory.obj \
+			$(OBJDIR)\nkmm_scramble.obj \
+			$(OBJDIR)\nkmm_sort.obj \
+			$(OBJDIR)\nkmm_strlib.obj \
+			$(OBJDIR)\nkmm_strlib_sjis.obj \
+			$(OBJDIR)\nkmm_strlib_unicode.obj \
+			$(OBJDIR)\nkmm_stringlist.obj \
+			$(OBJDIR)\nkmm_utils.obj \
+			$(OBJDIR)\nkmm_w32.obj \
 
 
 # フラグ
